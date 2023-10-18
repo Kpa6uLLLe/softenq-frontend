@@ -9,10 +9,60 @@
     <form id = "signin" method = "POST">
           <input class = "form-field" name='username' type="text" placeholder='username'/>
           <input class = "form-field" name='password' type="text" placeholder='password'/>
-          <input type="submit" value = "Send"/>
+          <input type="submit" value = "Login"/>
     </form>
+    <div id="all">
+    </div>
+    <div id="user">
+
+    </div>
+    <div id="mod">
+
+    </div>
+    <div id="admin">
+
+    </div>
     <script>
-        
+        function showContent(token){
+            config = {
+                method: "GET",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'x-access-token': token
+                }
+            }
+            fetch("http://localhost:3000/api/test/all", config)
+            .then((res) => {
+                return res.text();
+            })
+            .then((text) => {
+                all.innerHTML = text;
+            });
+            fetch("http://localhost:3000/api/test/admin", config)
+            .then((res) => {
+                return res.text();
+            })
+            .then((text) => {
+                admin.innerHTML = text;
+            });
+            fetch("http://localhost:3000/api/test/mod", config)
+            .then((res) => {
+                return res.text();
+            })
+            .then((text) => {
+                mod.innerHTML = text;
+            });
+            fetch("http://localhost:3000/api/test/user", config)
+            .then((res) => {
+                return res.text();
+            })
+            .then((text) => {
+                user.innerHTML = text;
+            });
+        }
+
+        showContent("");
         signin.onsubmit = async function(event){
             event.preventDefault();
             let form = document.getElementById('signin');
@@ -21,18 +71,21 @@
                 password : form.querySelector('input[name="password"]').value
             }
             console.log(dataJson);
-            let response = fetch("http://localhost:3000/api/auth/signin", {
+            let response = await fetch("http://localhost:3000/api/auth/signin", {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-
-                //make sure to serialize your JSON body
                 body: JSON.stringify(dataJson)
                 })
-                .then((res) => res.text());
-                console.log(response);
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    let token = data.accessToken;
+                    showContent(token);
+                });
             
         }
         
