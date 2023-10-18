@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id = "signin" method = "POST">
+          <input class = "form-field" name='username' type="text" placeholder='username'/>
+          <input class = "form-field" name='password' type="text" placeholder='password'/>
+          <input type="submit" value = "Send"/>
+    </form>
+    <script>
+        
+        signin.onsubmit = async function(event){
+            event.preventDefault();
+            let form = document.getElementById('signin');
+            dataJson = {
+                username : form.querySelector('input[name="username"]').value,
+                password : form.querySelector('input[name="password"]').value
+            }
+            console.log(dataJson);
+            let response = fetch("http://localhost:3000/api/auth/signin", {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+
+                //make sure to serialize your JSON body
+                body: JSON.stringify(dataJson)
+                })
+                .then((res) => res.text());
+                console.log(response);
+            
+        }
+        
+    </script>     
+</body>
+</html>

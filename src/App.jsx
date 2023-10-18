@@ -8,10 +8,19 @@ function App() {
   .then((res) => res.text());
   console.log(response);
   const [count, setCount] = useState(0)
-
+  
   return (
     <>
       <div>
+        <h3>signup</h3>
+        
+        <form class = "signup" action="auth/signup.html" method="POST">
+          <input type="submit" value = "Go"/>
+        </form>
+        <h3>signin</h3>
+        <form class = "signin" action="auth/signin.html">
+          <input type="submit" value = "Go"/>
+        </form>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form class = "signup" action="auth/signup.html" method="POST">
+        <input class = "form-field" name='username' type="text" placeholder='username'/>
+        <input class = "form-field" name='email' type="text" placeholder='email'/>
+        <input class = "form-field" name='password' type="text" placeholder='password'/>
+        <input type="submit" value = "Send"/>
+      </form>
+      <script>
+        let form = document.querySelectorAll(".signup");
+        console.log(form);
+      </script>
+</body>
+</html>
