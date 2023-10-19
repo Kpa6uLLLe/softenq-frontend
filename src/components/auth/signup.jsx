@@ -1,23 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form id = "signup">
-        <input class = "form-field" name='username' type="text" placeholder='username'/>
-        <input class = "form-field" name='email' type="text" placeholder='email'/>
-        <input class = "form-field" name='password' type="text" placeholder='password'/>
-        <input type="submit" value = "Sign Up"/>
-    </form>
-    <div id="message"></div>
-      <script>
-        signup.onsubmit = async function(event){
+import React, {Component} from "react";
+
+export default class SignUp extends Component{
+    constructor(){
+        super();
+    }
+
+    render(){
+        return <>
+        <h3>signup</h3>
+        <form onSubmit={async (event) => {
             event.preventDefault();
             let form = document.getElementById('signup');
-            dataJson = {
+            let dataJson = {
                 username : form.querySelector('input[name="username"]').value,
                 password : form.querySelector('input[name="password"]').value,
                 email : form.querySelector('input[name="email"]').value,
@@ -39,8 +33,13 @@
                     console.log(data.message);
                     message.innerHTML = data.message;
                 });
-            
-        }
-      </script>
-</body>
-</html>
+        }} id = "signup">
+            <input className = "form-field" name='username' type="text" placeholder='username'/>
+            <input className = "form-field" name='email' type="text" placeholder='email'/>
+            <input className = "form-field" name='password' type="text" placeholder='password'/>
+            <input type="submit" value = "Sign Up"/>
+        </form>
+        <div id="message"></div>
+        </>
+    }
+}
