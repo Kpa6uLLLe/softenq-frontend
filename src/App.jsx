@@ -12,7 +12,19 @@ function App() {
   return (
     <>
       <div>
+      <h2>Signin</h2>
+        <form action="/signin">
+          <input type="submit" value="Go"/>
+        </form>
       </div>
+      <div>
+        <h2>Signup</h2>
+        <form action="/signup">
+          <input type="submit" value="Go"/>
+        </form>
+      </div>
+        
+      
       
     </>
   )
